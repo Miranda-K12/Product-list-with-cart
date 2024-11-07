@@ -1,0 +1,304 @@
+.cartTab .listCart .quantity span, .cartTab .close,
+.cartTab .check-out, .about, header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact .contact-form .form .submit-btn, .menu-container .product-container .item .add-Cart, .about .about-text .menu-btn {
+  background-color: #87635A;
+  color: #F5EEEC;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.8rem;
+  width: 60%;
+  max-width: 200px;
+}
+
+html {
+  font-size: 65.8%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #FCF8F6;
+}
+
+.container {
+  max-width: 144rem;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+header {
+  background-color: #87635A;
+  margin-bottom: 4.8rem;
+}
+header .nav-bar-list {
+  display: flex;
+  font-size: 1.8rem;
+  justify-content: space-around;
+  list-style-type: none;
+  gap: 4.8rem;
+}
+header .nav-bar-list a {
+  color: #FCF8F6;
+  text-decoration: none;
+  font-weight: 500;
+  font-weight: 600;
+  font-size: 2rem;
+}
+header .icon-cart {
+  margin-left: 4.8rem;
+}
+header .icon-cart .basket {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4.8rem;
+  margin-bottom: 4.8rem;
+}
+.about .about-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.about .about-text h1 {
+  font-size: 4.2rem;
+  color: #87635A;
+  text-align: center;
+}
+.about .about-text p {
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+.about .about-text .menu-btn {
+  padding: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+.about .about-text .menu-btn:hover {
+  background-color: rgb(104.4, 76.56, 69.6);
+}
+.about .about-text a {
+  text-decoration: none;
+}
+.about .about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 2rem;
+}
+
+.menu-container .section-header {
+  font-size: 3.6rem;
+  color: #87635A;
+}
+.menu-container .product-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+  padding: 2rem;
+}
+.menu-container .product-container .item {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.8rem;
+  position: relative;
+  border-radius: 2rem;
+  color: #87635A;
+  border: 2px solid #87635A;
+  cursor: pointer;
+  padding: 1.2rem;
+}
+.menu-container .product-container .item img {
+  width: 100%;
+  height: auto;
+}
+.menu-container .product-container .item .add-Cart {
+  margin-bottom: 2.4rem;
+  padding: 1rem 2rem;
+}
+.menu-container .product-container .item .add-Cart:hover {
+  background-color: rgb(104.4, 76.56, 69.6);
+}
+.menu-container .product-container .item .icon-cart img {
+  width: 100%;
+  height: auto;
+}
+.menu-container .product-container .item h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 3.6rem;
+  margin-bottom: 2.4rem;
+  letter-spacing: 2px;
+  margin-left: 2.4rem;
+}
+.menu-container .product-container .item .price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-left: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+
+.cartTab {
+  width: 40%;
+  color: #87635A;
+  background-color: #FCF8F6;
+  position: absolute;
+  top: -4.8rem;
+  right: 0;
+  display: grid;
+  grid-template-rows: 8rem auto 4rem;
+  padding: 1rem;
+  transition: transform 1s;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  border-radius: 2rem;
+}
+.cartTab h3 {
+  font-size: 4.2rem;
+  text-align: center;
+}
+.cartTab .btn {
+  display: flex;
+  justify-content: space-between;
+}
+.cartTab .close,
+.cartTab .check-out {
+  color: #F5EEEC;
+  width: 40%;
+  font-size: 1.8rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.cartTab .close {
+  background-color: #CD1818;
+}
+.cartTab .check-out {
+  background-color: #347928;
+}
+.cartTab .listCart {
+  overflow: auto;
+}
+.cartTab .listCart .item {
+  display: grid;
+  grid-template-columns: 15% 40% 15% 20%;
+  gap: 1rem;
+  text-align: center;
+  align-items: center;
+  background-color: #F5EEEC;
+  margin-bottom: 2.4rem;
+  margin-top: 2.4rem;
+}
+.cartTab .listCart .item img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+.cartTab .listCart .quantity {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.cartTab .listCart .quantity span {
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+  background-color: #87635A;
+  border-radius: 50%;
+  color: #F5EEEC;
+  text-align: center;
+}
+.cartTab .listCart .quantity span:nth-child(2) {
+  background-color: #AD8A85;
+}
+
+.cartTab.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contact {
+  background-image: url(../images/contact-img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  margin-bottom: 4.8rem;
+  position: relative;
+}
+.contact .contact-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 40rem;
+  text-align: center;
+}
+.contact .contact-form .section-header {
+  font-size: 3.6rem;
+  font-weight: 600;
+  color: #F5EEEC;
+  margin-bottom: 1rem;
+}
+.contact .contact-form .form {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+.contact .contact-form .form input,
+.contact .contact-form .form textarea {
+  padding: 1.2rem;
+  border-radius: 2rem;
+  border: 1px solid #CAAFA7;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  width: 100%;
+}
+.contact .contact-form .form input::placeholder,
+.contact .contact-form .form textarea::placeholder {
+  color: #CAAFA7;
+}
+.contact .contact-form .form .submit-btn {
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+.contact .contact-form .form .submit-btn:hover {
+  background-color: rgb(104.4, 76.56, 69.6);
+}
+
+footer {
+  background-color: #87635A;
+  height: 8.4rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.8rem;
+  color: #FCF8F6;
+}
+footer a {
+  text-decoration: none;
+  color: #FCF8F6;
+  font-weight: 600;
+}
+footer .footer-logo {
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,359 @@
+// Define SCSS variables
+$rose-500: #87635A;
+$rose-400: #AD8A85;
+$rose-300: #CAAFA7;
+$rose-100: #F5EEEC;
+$rose-50: #FCF8F6;
+$green: #347928;
+$red: #CD1818;
+$font-size-header: 4.2rem;
+$div-header: 3.6rem;
+$header-font:2rem;
+$font-size-text: 1.8rem;
+$big-gap: 4.8rem;
+$medium-gap: 2.4rem;
+$small-padding: 1.2rem;
+$medium-margin: 2.4rem;
+$small-margin:1.2rem;
+$big-margin:4.8rem;
+$text-bold:600;
+$border-radius: 2rem;
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%bntStyle {
+  background-color: $rose-500;
+  color: $rose-100;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: $text-bold;
+  margin: 0 auto;
+  text-align: center;
+  font-size: $font-size-text;
+  width: 60%; 
+  max-width: 200px; 
+}
+
+html {
+  font-size: 65.8%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: $rose-50;
+}
+
+// Container styles
+.container {
+  max-width: 144rem;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+// Header styles
+header {
+  @extend %flex-center; 
+  background-color: $rose-500; 
+  margin-bottom: $big-margin;   
+  .nav-bar-list {
+    display: flex;
+    font-size: $font-size-text;  
+    justify-content: space-around;
+    list-style-type: none;
+    gap: $big-gap;  
+    a {
+      color: $rose-50;
+      text-decoration: none;
+      font-weight: 500;
+      font-weight: $text-bold;
+      font-size: $header-font;
+    }
+  }
+.icon-cart {
+  margin-left: $big-gap;   
+  .basket {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
+}
+//About Section 
+.about {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $big-gap;
+  margin-bottom: $big-margin;
+  @extend %flex-center;
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    h1 {
+      font-size: $font-size-header;
+      color: $rose-500;
+      text-align: center;
+    }
+    p {
+      font-size: $font-size-text;
+      line-height: 1.5;
+    }
+    .menu-btn {
+      @extend %bntStyle;
+      padding: $small-padding;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($rose-500, 10%); 
+      }
+    }
+    a{
+        text-decoration: none;
+      }
+}
+  .about-image {
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: $border-radius;
+    }
+  }
+}
+//Menu
+.menu-container {
+  .section-header {
+    font-size: $div-header;
+    color: $rose-500;
+  }
+
+  .product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $medium-gap;
+    padding: 2rem;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      font-size: $font-size-text;
+      position: relative;
+      border-radius: $border-radius;
+      color: $rose-500;
+      border: 2px solid $rose-500;
+      cursor: pointer;
+      padding: $small-padding;
+       img {
+      width: 100%;
+      height: auto;
+    }
+
+    .add-Cart {
+      @extend %bntStyle;
+      margin-bottom: $medium-margin;
+      padding: 1rem 2rem;
+      &:hover {
+        background-color: darken($rose-500, 10%);
+      }
+    }
+    .icon-cart img {
+      width: 100%;
+      height: auto;
+    }
+    h2 {
+      font-size: $header-font;
+      font-weight: 700;
+      margin-top: 3.6rem;
+      margin-bottom: $medium-margin;
+      letter-spacing: 2px;
+      margin-left: $medium-margin;
+    }
+    .price {
+      font-size: $font-size-text;
+      font-weight: $text-bold;
+      margin-left: $medium-margin;
+      margin-bottom: $medium-margin;
+    }
+  }
+}
+}
+.cartTab {
+  width: 40%;
+  color: $rose-500;
+  background-color: $rose-50;
+  position: absolute;
+  top: -4.8rem;
+  right: 0;
+  display: grid;
+  grid-template-rows: 8rem auto 4rem;
+  padding: 1rem;
+  transition: transform 1s;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  border-radius: $border-radius;
+
+  h3 {
+    font-size: $font-size-header;
+    text-align: center;
+  }
+
+  .btn {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .close,
+  .check-out {
+    color: $rose-100;
+    width: 40%;
+    font-size: $font-size-text;
+    @extend %flex-center;
+    border-radius: $border-radius;
+    cursor: pointer;
+    font-weight: $text-bold;
+  }
+
+  .close {
+    background-color: $red;
+  }
+
+  .check-out {
+    background-color: $green;
+  }
+
+  .listCart {
+    overflow: auto;
+
+    .item {
+      display: grid;
+      grid-template-columns: 15% 40% 15% 20%;
+      gap: 1rem;
+      text-align: center;
+      align-items: center;
+      background-color: $rose-100;
+      margin-bottom: $medium-margin;
+      margin-top: $medium-margin;
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        margin: 1rem;
+      }
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      span {
+        @extend %flex-center;
+        width: 2.4rem;
+        height: 2.4rem;
+        cursor: pointer;
+        background-color: $rose-500;
+        border-radius: 50%;
+        color: $rose-100;
+        text-align: center;
+
+        &:nth-child(2) {
+          background-color: $rose-400;
+        }
+      }
+    }
+  }
+}
+
+.cartTab.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+// Contact
+.contact {
+  background-image: url(../images/contact-img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  margin-bottom: $big-margin;
+  position: relative;
+
+  .contact-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 40rem;
+    text-align: center;
+
+    .section-header {
+      font-size: $div-header;
+      font-weight: $text-bold;
+      color: $rose-100;
+      margin-bottom: 1rem; // Optional: space between header and form
+    }
+
+    .form {
+      padding: $small-padding;
+      display: flex;
+      flex-direction: column;
+      gap: $medium-gap;
+
+      input,
+      textarea {
+        padding: $small-padding;
+        border-radius: $border-radius;
+        border: 1px solid $rose-300; // Optional: Border color for inputs
+        margin-bottom: 1rem; // Space between fields
+        font-size: $font-size-text; // Ensure readable text
+        width: 100%; // Make inputs full width
+
+        &::placeholder {
+          color: $rose-300; // Optional: Color for placeholder text
+        }
+      }
+
+      .submit-btn {
+        @extend %bntStyle;
+        padding: 1rem 2rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($rose-500, 10%);
+        }
+      }
+    }
+  }
+}
+
+//Footer
+footer{
+  background-color: $rose-500;
+  height:8.4rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: $font-size-text;
+  color:$rose-50;
+  a{
+    text-decoration: none;
+    color:$rose-50;
+    font-weight: $text-bold;
+  }
+  .footer-logo{
+    width:3.6rem;
+    height:3.6rem;
+  }
+}
+
+
