@@ -42,6 +42,9 @@ $border-radius: 2rem;
 
 html {
   font-size: 65.8%;
+  @media (max-width: 768px){
+    font-size: 56%;
+  }
 }
 
 body {
@@ -62,35 +65,46 @@ header {
   @extend %flex-center; 
   background-color: $rose-500; 
   margin-bottom: $big-margin;   
-  .nav-bar-list {
-    display: flex;
-    font-size: $font-size-text;  
-    justify-content: space-around;
-    list-style-type: none;
-    gap: $big-gap;  
-    a {
-      color: $rose-50;
-      text-decoration: none;
-      font-weight: 500;
-      font-weight: $text-bold;
-      font-size: $header-font;
-    }
+.nav-bar-list {
+  display: flex;
+  font-size: $font-size-text;
+  justify-content: space-around;
+  list-style-type: none;
+  gap: $big-gap;
+      @media(max-width: 768px){
+   display: none;
   }
+  a {
+    color: $rose-50;
+    text-decoration: none;
+    font-weight: $text-bold;
+    font-size: $header-font;  
+  }
+}
+// Icon cart
 .icon-cart {
-  margin-left: $big-gap;   
+  margin-left: $big-gap;
+   @media(max-width: 768px){
+    margin: 0 auto;
+   
+   }
   .basket {
     width: 3.2rem;
     height: 3.2rem;
   }
 }
 }
+
 //About Section 
 .about {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: $big-gap;
   margin-bottom: $big-margin;
-  @extend %flex-center;
+  @extend %flex-center;  
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;  
+  }
   .about-text {
     display: flex;
     flex-direction: column;
@@ -110,7 +124,7 @@ header {
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: darken($rose-500, 10%); 
+        transform: scale(1.05);
       }
     }
     a{
@@ -137,7 +151,12 @@ header {
     grid-template-columns: repeat(3, 1fr);
     gap: $medium-gap;
     padding: 2rem;
-
+     @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;  
+  }
+  @media (max-width: 768px) {
+    grid-template-columns:  1fr;  
+  }
     .item {
       display: flex;
       flex-direction: column;
@@ -152,13 +171,13 @@ header {
       width: 100%;
       height: auto;
     }
-
+  }
     .add-Cart {
       @extend %bntStyle;
       margin-bottom: $medium-margin;
       padding: 1rem 2rem;
       &:hover {
-        background-color: darken($rose-500, 10%);
+        transform: scale(1.05);
       }
     }
     .icon-cart img {
@@ -181,7 +200,6 @@ header {
     }
   }
 }
-}
 .cartTab {
   width: 40%;
   color: $rose-500;
@@ -197,7 +215,13 @@ header {
   pointer-events: none;
   z-index: 100;
   border-radius: $border-radius;
-
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+   @media (max-width: 1024px){
+    width: 60%;
+   }
+   @media (max-width: 768px){
+    width: 100%;
+   }
   h3 {
     font-size: $font-size-header;
     text-align: center;
@@ -239,6 +263,7 @@ header {
       background-color: $rose-100;
       margin-bottom: $medium-margin;
       margin-top: $medium-margin;
+      font-size: $font-size-text;
 
       img {
         width: 100%;
@@ -329,7 +354,7 @@ header {
         cursor: pointer;
 
         &:hover {
-          background-color: darken($rose-500, 10%);
+         transform: scale(1.05);
         }
       }
     }
@@ -339,12 +364,27 @@ header {
 //Footer
 footer{
   background-color: $rose-500;
-  height:8.4rem;
+  padding: $small-padding;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: $font-size-text;
   color:$rose-50;
+    @media (max-width: 1024px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+    justify-items: center; 
+    align-items: center;
+  }
+  @media (max-width: 570px){
+     grid-template-columns: 1fr;
+     gap:$medium-gap;
+  }
+  h4{
+     @media (max-width: 1024px) {
+      display:none
+  }
+  }
   a{
     text-decoration: none;
     color:$rose-50;
@@ -357,3 +397,4 @@ footer{
 }
 
 
+//Responsive

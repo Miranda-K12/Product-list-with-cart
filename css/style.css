@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.contact .contact-form .form .submit-btn, .menu-container .product-container .item .add-Cart, .about .about-text .menu-btn {
+.contact .contact-form .form .submit-btn, .menu-container .product-container .add-Cart, .about .about-text .menu-btn {
   background-color: #87635A;
   color: #F5EEEC;
   border: none;
@@ -22,6 +22,11 @@
 
 html {
   font-size: 65.8%;
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 56%;
+  }
 }
 
 body {
@@ -47,15 +52,24 @@ header .nav-bar-list {
   list-style-type: none;
   gap: 4.8rem;
 }
+@media (max-width: 768px) {
+  header .nav-bar-list {
+    display: none;
+  }
+}
 header .nav-bar-list a {
   color: #FCF8F6;
   text-decoration: none;
-  font-weight: 500;
   font-weight: 600;
   font-size: 2rem;
 }
 header .icon-cart {
   margin-left: 4.8rem;
+}
+@media (max-width: 768px) {
+  header .icon-cart {
+    margin: 0 auto;
+  }
 }
 header .icon-cart .basket {
   width: 3.2rem;
@@ -67,6 +81,11 @@ header .icon-cart .basket {
   grid-template-columns: repeat(2, 1fr);
   gap: 4.8rem;
   margin-bottom: 4.8rem;
+}
+@media (max-width: 1024px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
 }
 .about .about-text {
   display: flex;
@@ -87,7 +106,7 @@ header .icon-cart .basket {
   transition: background-color 0.3s ease;
 }
 .about .about-text .menu-btn:hover {
-  background-color: rgb(104.4, 76.56, 69.6);
+  transform: scale(1.05);
 }
 .about .about-text a {
   text-decoration: none;
@@ -108,6 +127,16 @@ header .icon-cart .basket {
   gap: 2.4rem;
   padding: 2rem;
 }
+@media (max-width: 1024px) {
+  .menu-container .product-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .menu-container .product-container {
+    grid-template-columns: 1fr;
+  }
+}
 .menu-container .product-container .item {
   display: flex;
   flex-direction: column;
@@ -123,18 +152,18 @@ header .icon-cart .basket {
   width: 100%;
   height: auto;
 }
-.menu-container .product-container .item .add-Cart {
+.menu-container .product-container .add-Cart {
   margin-bottom: 2.4rem;
   padding: 1rem 2rem;
 }
-.menu-container .product-container .item .add-Cart:hover {
-  background-color: rgb(104.4, 76.56, 69.6);
+.menu-container .product-container .add-Cart:hover {
+  transform: scale(1.05);
 }
-.menu-container .product-container .item .icon-cart img {
+.menu-container .product-container .icon-cart img {
   width: 100%;
   height: auto;
 }
-.menu-container .product-container .item h2 {
+.menu-container .product-container h2 {
   font-size: 2rem;
   font-weight: 700;
   margin-top: 3.6rem;
@@ -142,7 +171,7 @@ header .icon-cart .basket {
   letter-spacing: 2px;
   margin-left: 2.4rem;
 }
-.menu-container .product-container .item .price {
+.menu-container .product-container .price {
   font-size: 1.8rem;
   font-weight: 600;
   margin-left: 2.4rem;
@@ -164,6 +193,17 @@ header .icon-cart .basket {
   pointer-events: none;
   z-index: 100;
   border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+@media (max-width: 1024px) {
+  .cartTab {
+    width: 60%;
+  }
+}
+@media (max-width: 768px) {
+  .cartTab {
+    width: 100%;
+  }
 }
 .cartTab h3 {
   font-size: 4.2rem;
@@ -200,6 +240,7 @@ header .icon-cart .basket {
   background-color: #F5EEEC;
   margin-bottom: 2.4rem;
   margin-top: 2.4rem;
+  font-size: 1.8rem;
 }
 .cartTab .listCart .item img {
   width: 100%;
@@ -279,17 +320,36 @@ header .icon-cart .basket {
   cursor: pointer;
 }
 .contact .contact-form .form .submit-btn:hover {
-  background-color: rgb(104.4, 76.56, 69.6);
+  transform: scale(1.05);
 }
 
 footer {
   background-color: #87635A;
-  height: 8.4rem;
+  padding: 1.2rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: 1.8rem;
   color: #FCF8F6;
+}
+@media (max-width: 1024px) {
+  footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+}
+@media (max-width: 570px) {
+  footer {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+}
+@media (max-width: 1024px) {
+  footer h4 {
+    display: none;
+  }
 }
 footer a {
   text-decoration: none;

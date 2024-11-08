@@ -1,5 +1,4 @@
 'use strict';
-
 // DOM Elements
 const cartIcon = document.querySelector('.icon-cart');
 const cartTab = document.querySelector('.cartTab');
