@@ -44,6 +44,7 @@ body {
 header {
   background-color: #87635A;
   margin-bottom: 4.8rem;
+  height: 8.4rem;
 }
 header .nav-bar-list {
   display: flex;
@@ -183,9 +184,11 @@ header .icon-cart .basket {
   color: #87635A;
   background-color: #FCF8F6;
   position: absolute;
-  top: -4.8rem;
-  right: 0;
+  top: 8.4rem;
+  margin: 0 auto;
   display: grid;
+  left: 50%;
+  transform: translate(-50%, -50%);
   grid-template-rows: 8rem auto 4rem;
   padding: 1rem;
   transition: transform 1s;

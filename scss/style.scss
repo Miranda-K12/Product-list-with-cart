@@ -65,6 +65,7 @@ header {
   @extend %flex-center; 
   background-color: $rose-500; 
   margin-bottom: $big-margin;   
+  height: 8.4rem;
 .nav-bar-list {
   display: flex;
   font-size: $font-size-text;
@@ -205,9 +206,11 @@ header {
   color: $rose-500;
   background-color: $rose-50;
   position: absolute;
-  top: -4.8rem;
-  right: 0;
+  top: 8.4rem;
+  margin: 0 auto;
   display: grid;
+  left:50%;
+  transform: translate(-50%, -50%);
   grid-template-rows: 8rem auto 4rem;
   padding: 1rem;
   transition: transform 1s;
@@ -216,6 +219,7 @@ header {
   z-index: 100;
   border-radius: $border-radius;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+ 
    @media (max-width: 1024px){
     width: 60%;
    }
