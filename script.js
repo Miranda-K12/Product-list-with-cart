@@ -21,8 +21,32 @@
       themeIcon.src = 'images/light-mode.svg'; 
     }
   });
-
-
+//Smooth Scrolling
+function smoothScroll() {
+    const links = document.querySelectorAll('a:link'); 
+    links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            const href = link.getAttribute("href"); 
+            if (href === "#") {
+                e.preventDefault(); 
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            } 
+            else if (href.startsWith("#")) {
+                e.preventDefault();
+                const section = document.querySelector(href); 
+                if (section) { 
+                    section.scrollIntoView({
+                        behavior: "smooth" 
+                    });
+                }
+            }
+        });
+    });
+}
+smoothScroll();
 // DOM Elements
 const cartIcon = document.querySelector('.icon-cart');
 const cartTab = document.querySelector('.cartTab');
