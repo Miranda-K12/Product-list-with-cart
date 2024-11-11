@@ -70,6 +70,7 @@ header {
 @media (max-width: 768px) {
   header {
     justify-content: center;
+    position: relative;
   }
 }
 header .nav-bar-list {
@@ -121,6 +122,9 @@ header .header-icons .icon-cart .basket {
 }
 header .header-icons .icon-cart .basket:hover {
   transform: scale(1.05);
+}
+header .header-icons .icon-cart span {
+  color: #FCF8F6;
 }
 
 .about {
@@ -237,11 +241,13 @@ header .header-icons .icon-cart .basket:hover {
   width: 40%;
   color: #87635A;
   background-color: #FCF8F6;
-  position: absolute;
-  top: 8.4rem;
+  position: fixed;
+  top: 50%;
   margin: 0 auto;
   display: grid;
   left: 50%;
+  max-height: 90vh;
+  position: fixed;
   transform: translate(-50%, -50%);
   grid-template-rows: 8rem auto 4rem;
   padding: 1rem;
@@ -249,8 +255,8 @@ header .header-icons .icon-cart .basket:hover {
   opacity: 0;
   pointer-events: none;
   z-index: 100;
-  border-radius: 2rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow: auto;
 }
 @media (max-width: 1024px) {
   .cartTab {
@@ -259,16 +265,29 @@ header .header-icons .icon-cart .basket:hover {
 }
 @media (max-width: 768px) {
   .cartTab {
-    width: 100%;
+    width: 90%;
+    font-size: 1.8rem;
   }
 }
 .cartTab h3 {
   font-size: 4.2rem;
   text-align: center;
 }
+@media (max-width: 768px) {
+  .cartTab h3 {
+    font-size: 2rem;
+  }
+}
 .cartTab .btn {
   display: flex;
   justify-content: space-between;
+}
+.cartTab .close-btn {
+  position: absolute;
+  right: 2rem;
+  top: 1.2rem;
+  font-size: 3.6rem;
+  cursor: pointer;
 }
 .cartTab .close,
 .cartTab .check-out {
@@ -278,6 +297,8 @@ header .header-icons .icon-cart .basket:hover {
   border-radius: 2rem;
   cursor: pointer;
   font-weight: 600;
+  margin-top: 2.4rem;
+  padding: 1.2rem;
 }
 .cartTab .close {
   background-color: #CD1818;
@@ -322,10 +343,99 @@ header .header-icons .icon-cart .basket:hover {
 .cartTab .listCart .quantity span:nth-child(2) {
   background-color: #AD8A85;
 }
+.cartTab .cart-total-price {
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #ffde21;
+  color: #000000;
+  border-radius: 1rem;
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.2rem;
+}
 
 .cartTab.visible {
   opacity: 1;
   pointer-events: auto;
+}
+
+.cart-pay {
+  background-color: #F5EEEC;
+  border-radius: 2rem;
+  margin: 0 auto;
+  padding: 2.6rem;
+  width: 60%;
+  z-index: 1000;
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .cart-pay {
+    width: 90%;
+  }
+}
+.cart-pay .close-payment {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: 600;
+  right: 2rem;
+  top: 2rem;
+  cursor: pointer;
+}
+.cart-pay h3 {
+  font-size: 2rem;
+}
+.cart-pay .cards {
+  display: flex;
+  gap: 2.6rem;
+  margin-bottom: 2.4rem;
+}
+.cart-pay .cards .bank-card {
+  width: 6.4rem;
+  height: auto;
+}
+.cart-pay .payment-form, .cart-pay .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.cart-pay .form-group label {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #000000;
+}
+.cart-pay .form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #CAAFA7;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.cart-pay .pay-button {
+  background-color: #347928;
+  width: 20rem;
+  margin: 0 auto;
+  color: #FCF8F6;
+  padding: 1.2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1.8rem;
+  border: 1px solid #F5EEEC;
+}
+.cart-pay .pay-button:hover {
+  transform: scale(1.05);
+}
+.cart-pay .pay-confirmation {
+  display: none;
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: 600;
 }
 
 .contact {

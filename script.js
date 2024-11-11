@@ -47,15 +47,15 @@ function smoothScroll() {
     });
 }
 smoothScroll();
+
 // DOM Elements
 const cartIcon = document.querySelector('.icon-cart');
 const cartTab = document.querySelector('.cartTab');
 const closeBtn = document.querySelector('.close');
-const checkOut = document.querySelector('.check-out');
 let listProductHtml = document.querySelector('.product-container');
 let listCartHtml = document.querySelector('.listCart');
 let iconCartSpan = document.querySelector('.icon-cart span');
-
+let closeCart = document.querySelector('.close-btn');
 let listProducts = [];
 let cart = [];
 
@@ -64,10 +64,18 @@ cartIcon.addEventListener('click', () => {
   cartTab.classList.toggle('visible');
 });
 
-closeBtn.addEventListener('click', () => {
+closeCart.addEventListener('click', () => {
   cartTab.classList.toggle('visible');
 });
 
+closeBtn.addEventListener('click', () => {
+  cartTab.classList.toggle('visible');
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    cartTab.style.display = "none"; 
+  }
+});
 // Add product data to the HTML
 const addDataHtml = () => {
   if (listProducts.length > 0) {
@@ -109,33 +117,30 @@ const addtoCart = (product_id) => {
     cart[positionThisProductInCart].quantity++;
   }
   
-  // Render cart and update local storage
   addCartToHtml();
   addCartToMemory();
 }
-
-// Function to render the cart to HTML
+let totalQuantity = 0;
+let totalPrice = 0; 
 const addCartToHtml = () => {
-  listCartHtml.innerHTML = '';  // Clear current cart HTML
-  let totalQuantity = 0;
-  
+  listCartHtml.innerHTML = ''; 
   if (cart.length > 0) {
     cart.forEach(item => {
       totalQuantity += item.quantity;
+      let positionProduct = listProducts.findIndex((value) => value.id == item.product_id);
+      let info = listProducts[positionProduct];
+      let itemTotalPrice = (info.price * item.quantity).toFixed(2);
+      totalPrice += parseFloat(itemTotalPrice);  
       let newItem = document.createElement('div');
       newItem.classList.add('item');
       newItem.dataset.id = item.product_id;
-
-      // Find product info in the list
-      let positionProduct = listProducts.findIndex((value) => value.id == item.product_id);
-      let info = listProducts[positionProduct];
 
       newItem.innerHTML = `
         <div class="image">
           <img src="${info.image}" alt="${info.name}">
         </div>
         <div class="name">${info.name}</div>
-        <div class="totalPrice">$${(info.price * item.quantity).toFixed(2)}</div>
+        <div class="totalPrice">$${itemTotalPrice}</div>
         <div class="quantity">
           <span class="minus"><</span>
           <span>${item.quantity}</span>
@@ -145,7 +150,6 @@ const addCartToHtml = () => {
       listCartHtml.appendChild(newItem);
     });
   } else {
-    // Cart is empty
     listCartHtml.innerHTML = "<p>Your cart is empty.</p>";
     listCartHtml.style.textAlign = "center";
     listCartHtml.style.marginTop = '2.4rem';
@@ -153,16 +157,24 @@ const addCartToHtml = () => {
     listCartHtml.style.fontSize = '1.6rem';
   }
 
-  // Update cart icon quantity
   iconCartSpan.innerText = totalQuantity;
+
+  const cartTotalPriceElement = document.querySelector('.cart-total-price');
+  if (cartTotalPriceElement) {
+    cartTotalPriceElement.innerText = `$${totalPrice.toFixed(2)}`;
+  } else {
+
+    const newTotalPriceElement = document.createElement('div');
+    newTotalPriceElement.classList.add('cart-total-price');
+    newTotalPriceElement.innerText = `$${totalPrice.toFixed(2)}`;
+    cartTab.appendChild(newTotalPriceElement);
+  }
 }
 
-// Function to save the cart to local storage
 const addCartToMemory = () => {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Event listener to change the quantity of products in the cart
 listCartHtml.addEventListener('click', (event) => {
   let positionClick = event.target;
   if (positionClick.classList.contains('minus') || positionClick.classList.contains('plus')) {
@@ -172,7 +184,6 @@ listCartHtml.addEventListener('click', (event) => {
   }
 });
 
-// Function to update product quantity in the cart
 const changeQuantityCart = (product_id, type) => {
   let positionItemInCart = cart.findIndex((value) => value.product_id == product_id);
 
@@ -191,14 +202,13 @@ const changeQuantityCart = (product_id, type) => {
     }
   }
 
-  // Update cart display and localStorage
   addCartToHtml();
   addCartToMemory();
 }
 
-// Initialize the application and fetch product data
+
 const initApplication = () => {
-  // Load cart from localStorage on page load
+
   const savedCart = localStorage.getItem('cart');
   if (savedCart) {
     cart = JSON.parse(savedCart);
@@ -210,18 +220,40 @@ const initApplication = () => {
     .then(data => {
       listProducts = data;
       addDataHtml();
-      addCartToHtml();  // Render the cart after products are loaded
+      addCartToHtml();  
     })
     .catch(error => {
       console.error('Error fetching data:', error);
     });
 };
 
-// Start the application
+
 initApplication();
 
-//CheckOut Window 
-checkOut.addEventListener('click', () => {
-  
+//CheckOut Window
+const closePayment = document.querySelector('.close-payment');
+const payCart = document.querySelector('.cart-pay');
+const checkOut = document.querySelector('.check-out');
+const payBtn = document.querySelector('.pay-button');
+const confirmPayment = document.querySelector('.pay-confirmation');
+const paymentForm = document.querySelector('.payment-form');
+closePayment.addEventListener('click', () => {
+  payCart.style.display = "none";
+})
+  document.addEventListener("DOMContentLoaded", () => {
+    checkOut.addEventListener('click', () => {
+      payCart.style.display = "block"; 
+      cartTab.style.display = "none";
+    });
+      document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      payCart.style.display = "none";
+        }
+      })
+  }); 
+payBtn.addEventListener('click', () => {
+  paymentForm.style.display = 'none';
+  confirmPayment.style.display = 'block';
+  payCart.style.background = "#347928";
+  payCart.style.color = "#FCF8F6";
 });
- 

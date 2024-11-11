@@ -6,6 +6,7 @@ $rose-100: #F5EEEC;
 $rose-50: #FCF8F6;
 $green: #347928;
 $red: #CD1818;
+$yellow:#ffde21;
 $black:#000000;
 $font-size-header: 4.2rem;
 $div-header: 3.6rem;
@@ -14,6 +15,7 @@ $font-size-text: 1.8rem;
 $big-gap: 4.8rem;
 $medium-gap: 2.4rem;
 $small-padding: 1.2rem;
+$medium-padding:2.6rem;
 $medium-margin: 2.4rem;
 $small-margin:1.2rem;
 $big-margin:4.8rem;
@@ -87,6 +89,7 @@ header {
   padding: 0 3.6rem;
   @media (max-width:768px){
   justify-content: center;
+  position: relative;
   }
 .nav-bar-list {
   display: flex;
@@ -131,6 +134,9 @@ header {
     &:hover{
       transform: scale(1.05);
         }
+      }
+      span{
+        color:$rose-50;
       }
     }
 }
@@ -250,11 +256,13 @@ header {
   width: 40%;
   color: $rose-500;
   background-color: $rose-50;
-  position: absolute;
-  top: 8.4rem;
+  position: fixed;
+  top: 50%;
   margin: 0 auto;
   display: grid;
   left:50%;
+  max-height:90vh;
+  position: fixed;
   transform: translate(-50%, -50%);
   grid-template-rows: 8rem auto 4rem;
   padding: 1rem;
@@ -262,25 +270,34 @@ header {
   opacity: 0;
   pointer-events: none;
   z-index: 100;
-  border-radius: $border-radius;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
- 
+  overflow: auto;
    @media (max-width: 1024px){
     width: 60%;
    }
    @media (max-width: 768px){
-    width: 100%;
+    width: 90%;
+    font-size: $font-size-text;
    }
   h3 {
     font-size: $font-size-header;
     text-align: center;
+      @media (max-width: 768px){
+    font-size: $header-font;
+   }
   }
 
   .btn {
     display: flex;
     justify-content: space-between;
   }
-
+.close-btn{
+  position: absolute;
+  right:2rem;
+  top: 1.2rem;
+  font-size: $div-header;
+  cursor: pointer;
+}
   .close,
   .check-out {
     color: $rose-100;
@@ -290,6 +307,8 @@ header {
     border-radius: $border-radius;
     cursor: pointer;
     font-weight: $text-bold;
+    margin-top: $medium-margin;
+    padding: $small-padding;
   }
 
   .close {
@@ -343,13 +362,99 @@ header {
       }
     }
   }
+    .cart-total-price{
+  font-size: $header-font;
+  font-weight: bold;
+  background-color:$yellow;
+  color:$black;
+  border-radius: 1rem;
+  width:30%;
+  margin: 0 auto;
+  text-align: center;
+  padding: $small-padding;
+      }
 }
-
 .cartTab.visible {
   opacity: 1;
   pointer-events: auto;
 }
-
+.cart-pay{
+  background-color: $rose-100;
+  border-radius: $border-radius;
+  margin: 0 auto;
+  padding: $medium-padding;
+  width:60%;
+  z-index:1000; 
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+  @media (max-width:768px){
+    width:90%;
+  }
+  .close-payment{
+      position: absolute;
+      font-size: $header-font;
+      font-weight: $text-bold;
+      right:2rem;
+      top:2rem;
+      cursor: pointer;
+    }
+  h3{
+    font-size: $header-font;
+  }
+  .cards{
+    display: flex;
+    gap:$medium-padding;
+    margin-bottom: $medium-margin;
+    .bank-card{
+      width:6.4rem;
+      height:auto;
+    }
+  }
+  .payment-form, .form-group{
+    display: flex;
+    flex-direction: column;
+    gap:$small-padding;
+  }
+  .form-group{
+    label {
+  margin-bottom: 10px;
+  font-size: $font-size-text;
+  color:$black;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid $rose-300;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+  }
+  .pay-button{
+    background-color: $green;
+    width: 20rem;
+    margin: 0 auto;
+    color:$rose-50;
+    padding: $small-padding;
+    border-radius: $border-radius;
+    font-weight: $text-bold;
+    font-size: $font-size-text;
+    border: 1px solid $rose-100;
+     &:hover {
+         transform: scale(1.05);
+        }
+  }
+  .pay-confirmation{
+    display: none;
+    font-size: $font-size-text;
+    text-align: center;
+    font-weight: $text-bold;
+  }
+}
 // Contact
 .contact {
   background-image: url(../images/contact-img.jpg);

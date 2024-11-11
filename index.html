@@ -19,6 +19,7 @@
   <div class="header-icons">
   <div class="icon-cart">
     <img src="images/basket.svg" alt="basket" class="basket">
+    <span id="icon-cart">0</span>
   </div>
   <div id="theme-toggle">
     <img src="images/light-mode.svg" alt="mode-icon" class="theme-icon">
@@ -41,6 +42,7 @@
 <div class="product-container">
 </div>
 <div class="cartTab">
+  <div class="close-btn">✖</div>
   <h3>Shopping Cart</h3>
   <div class="listCart">
 <div class="item">
@@ -54,10 +56,42 @@
   </div>
 </div>
   </div>
+  <div class="cart-total-price"></div>
     <div class="btn">
 <div class="close">Close</div>
 <div class="check-out">Check out</div>
     </div>
+    </div>
+    <div class="cart-pay">
+    <div class="close-payment">✖</div>
+      <h3>Cards</h3>
+      <div class="cards">
+        <img src="images/mastercard.svg" alt="bank-card" class="bank-card">
+        <img src="images/visa.svg" alt="bank-card" class="bank-card">
+        <img src="images/express.svg" alt="bank-card" class="bank-card">
+      </div>
+      <form id="payment-form" class="payment-form">
+  <div class="form-group">
+    <label for="card-owner">Card Owner</label>
+    <input type="text" id="card-owner" name="card-owner" placeholder="Cardholder Name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="card-number">Card Number</label>
+    <input type="text" id="card-number" name="card-number" maxlength="16" placeholder="1234 5678 1234 5678" required>
+  </div>
+
+  <div class="form-group">
+    <label for="expiry-date">Expiry Date</label>
+    <input type="month" id="expiry-date" name="expiry-date" required>
+  </div>
+  <div class="form-group">
+    <label for="security-code">Security Code (CVV)</label>
+    <input type="text" id="security-code" name="security-code" maxlength="3" placeholder="123" required>
+  </div>
+  <button type="submit" class="pay-button">Pay</button>
+</form>
+<p class="pay-confirmation">Successful Payment</p>
     </div>
     </div>
     <div class="contact" id="contact">
@@ -70,7 +104,6 @@
       <button type="submit" class="submit-btn">Send Message</button>
     </form>
       </div>
-
     </div>
   </div>
     <footer>
