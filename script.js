@@ -1,8 +1,33 @@
 'use strict';
+//Light/Dark Mode
+  const themeButton = document.querySelector('#theme-toggle');
+  const body = document.body;
+  const themeIcon = themeButton.querySelector('.theme-icon');
+
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    themeIcon.src = 'images/dark-mode.svg';
+  } else {
+    themeIcon.src = 'images/light-mode.svg';
+  }
+
+  themeButton.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+      themeIcon.src = 'images/dark-mode.svg'; 
+    } else {
+      localStorage.setItem('theme', 'light');
+      themeIcon.src = 'images/light-mode.svg'; 
+    }
+  });
+
+
 // DOM Elements
 const cartIcon = document.querySelector('.icon-cart');
 const cartTab = document.querySelector('.cartTab');
 const closeBtn = document.querySelector('.close');
+const checkOut = document.querySelector('.check-out');
 let listProductHtml = document.querySelector('.product-container');
 let listCartHtml = document.querySelector('.listCart');
 let iconCartSpan = document.querySelector('.icon-cart span');
@@ -100,6 +125,7 @@ const addCartToHtml = () => {
     listCartHtml.innerHTML = "<p>Your cart is empty.</p>";
     listCartHtml.style.textAlign = "center";
     listCartHtml.style.marginTop = '2.4rem';
+    listCartHtml.style.marginBottom = '2.4rem';
     listCartHtml.style.fontSize = '1.6rem';
   }
 
@@ -169,3 +195,9 @@ const initApplication = () => {
 
 // Start the application
 initApplication();
+
+//CheckOut Window 
+checkOut.addEventListener('click', () => {
+  
+});
+ 

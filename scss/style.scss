@@ -6,6 +6,7 @@ $rose-100: #F5EEEC;
 $rose-50: #FCF8F6;
 $green: #347928;
 $red: #CD1818;
+$black:#000000;
 $font-size-header: 4.2rem;
 $div-header: 3.6rem;
 $header-font:2rem;
@@ -39,7 +40,11 @@ $border-radius: 2rem;
   width: 60%; 
   max-width: 200px; 
 }
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}
 html {
   font-size: 65.8%;
   @media (max-width: 768px){
@@ -48,8 +53,13 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
   background-color: $rose-50;
+  font-family: "Poppins", sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  &.dark-mode {
+  background-color: $black;
+  color: $rose-50;
+}
 }
 
 // Container styles
@@ -62,10 +72,19 @@ body {
 
 // Header styles
 header {
-  @extend %flex-center; 
+ display: flex; 
+ align-items: center;
+ justify-content: space-around;
   background-color: $rose-500; 
   margin-bottom: $big-margin;   
   height: 8.4rem;
+  width:100%;
+  position: sticky;
+  top:0;
+  left:0;
+  right:0;
+  z-index: 1;
+  padding: 0 3.6rem;
 .nav-bar-list {
   display: flex;
   font-size: $font-size-text;
@@ -83,17 +102,30 @@ header {
   }
 }
 // Icon cart
+  .theme-icon{
+  width: 4.2rem;
+  height: 4.2rem;
+  margin-left: $big-gap;
+  transition: transform 0.2s ease;
+  cursor:pointer;
+    &:hover{
+      transform: scale(1.05);
+    }
+}
 .icon-cart {
   margin-left: $big-gap;
    @media(max-width: 768px){
     margin: 0 auto;
-   
    }
   .basket {
     width: 3.2rem;
     height: 3.2rem;
+    cursor:pointer;
+    &:hover{
+      transform: scale(1.05);
+    }
+      }
   }
-}
 }
 
 //About Section 
@@ -110,9 +142,9 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: $medium-gap;
     h1 {
       font-size: $font-size-header;
-      color: $rose-500;
       text-align: center;
     }
     p {
@@ -164,13 +196,17 @@ header {
       font-size: $font-size-text;
       position: relative;
       border-radius: $border-radius;
-      color: $rose-500;
-      border: 2px solid $rose-500;
       cursor: pointer;
-      padding: $small-padding;
+      border: 2px solid $rose-500;
+      &:hover {
+        transform: translateY(-5px);  
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
        img {
       width: 100%;
       height: auto;
+      border-radius: $border-radius;
+      transition: transform 0.3s ease;
     }
   }
     .add-Cart {
@@ -179,6 +215,9 @@ header {
       padding: 1rem 2rem;
       &:hover {
         transform: scale(1.05);
+      }
+      @media (max-width:350px){
+        width:90%;
       }
     }
     .icon-cart img {
@@ -329,7 +368,7 @@ header {
       font-size: $div-header;
       font-weight: $text-bold;
       color: $rose-100;
-      margin-bottom: 1rem; // Optional: space between header and form
+      margin-bottom: 1rem; 
     }
 
     .form {
@@ -342,13 +381,13 @@ header {
       textarea {
         padding: $small-padding;
         border-radius: $border-radius;
-        border: 1px solid $rose-300; // Optional: Border color for inputs
-        margin-bottom: 1rem; // Space between fields
-        font-size: $font-size-text; // Ensure readable text
-        width: 100%; // Make inputs full width
+        border: 1px solid $rose-300; 
+        margin-bottom: 1rem; 
+        font-size: $font-size-text;
+        width: 100%; 
 
         &::placeholder {
-          color: $rose-300; // Optional: Color for placeholder text
+          color: $rose-300; 
         }
       }
 
@@ -356,6 +395,9 @@ header {
         @extend %bntStyle;
         padding: 1rem 2rem;
         cursor: pointer;
+          @media (max-width:400px){
+        width:90%;
+      }
 
         &:hover {
          transform: scale(1.05);
@@ -397,6 +439,9 @@ footer{
   .footer-logo{
     width:3.6rem;
     height:3.6rem;
+&:hover{
+      transform: scale(1.05);
+    }
   }
 }
 
