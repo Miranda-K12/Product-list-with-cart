@@ -59,11 +59,11 @@ let closeCart = document.querySelector('.close-btn');
 let listProducts = [];
 let cart = [];
 
-// Toggle cart visibility
-cartIcon.addEventListener('click', () => {
-  cartTab.classList.toggle('visible');
-});
 
+// Toggle cart visibility
+ cartIcon.addEventListener('click', () => {
+    cartTab.classList.toggle('visible'); 
+  });
 closeCart.addEventListener('click', () => {
   cartTab.classList.toggle('visible');
 });
@@ -120,9 +120,9 @@ const addtoCart = (product_id) => {
   addCartToHtml();
   addCartToMemory();
 }
-let totalQuantity = 0;
-let totalPrice = 0; 
 const addCartToHtml = () => {
+  let totalQuantity = 0;
+  let totalPrice = 0; 
   listCartHtml.innerHTML = ''; 
   if (cart.length > 0) {
     cart.forEach(item => {
@@ -205,15 +205,11 @@ const changeQuantityCart = (product_id, type) => {
   addCartToHtml();
   addCartToMemory();
 }
-
-
 const initApplication = () => {
-
   const savedCart = localStorage.getItem('cart');
   if (savedCart) {
     cart = JSON.parse(savedCart);
   }
-
   // Fetch products and render the page
   fetch('products.json')
     .then(response => response.json())
@@ -231,29 +227,122 @@ const initApplication = () => {
 initApplication();
 
 //CheckOut Window
+
 const closePayment = document.querySelector('.close-payment');
 const payCart = document.querySelector('.cart-pay');
 const checkOut = document.querySelector('.check-out');
-const payBtn = document.querySelector('.pay-button');
-const confirmPayment = document.querySelector('.pay-confirmation');
-const paymentForm = document.querySelector('.payment-form');
+
+const resetBasket = () => {
+   cart.length = 0;
+  localStorage.setItem('cart', '[]');
+
+  addCartToHtml();
+  iconCartSpan.innerText = '0';
+  cartTab.classList.remove('visible');
+  initApplication();
+}
+
 closePayment.addEventListener('click', () => {
   payCart.style.display = "none";
 })
-  document.addEventListener("DOMContentLoaded", () => {
-    checkOut.addEventListener('click', () => {
-      payCart.style.display = "block"; 
-      cartTab.style.display = "none";
-    });
-      document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      payCart.style.display = "none";
-        }
-      })
-  }); 
-payBtn.addEventListener('click', () => {
-  paymentForm.style.display = 'none';
-  confirmPayment.style.display = 'block';
-  payCart.style.background = "#347928";
-  payCart.style.color = "#FCF8F6";
+checkOut.addEventListener('click', () => {
+  if (cart.length > 0) {
+    payCart.style.display = "block";
+    cartTab.style.display = 'none';
+  } else {
+    alert('Your Basket is Empty');
+  }
+});
+
+//Payment window
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    payCart.style.display = "none";
+  }
+});
+
+const cardOwnerInput = document.getElementById('card-owner');
+const cardNumberInput = document.getElementById('card-number');
+const cardDateInput = document.getElementById('expiry-date');
+const cvcCodeInput = document.getElementById('security-code');
+const payBtn = document.querySelector('.pay-button');
+const confirmPayment = document.querySelector('.pay-confirmation');
+const paymentForm = document.querySelector('.payment-form');
+
+// Validate Inputs
+const validateCardOwner = (cardOwner) => /^(?=.*[A-Za-z]{3})[A-Za-z][A-Za-z '-]*[A-Za-z]$/.test(cardOwner);
+const validateCardNumber = (cardNumber) => /^\d{16}$/.test(cardNumber); // Only 16 digits
+const validateCvc = (cvc) => /^\d{3}$/.test(cvc); // Exactly 3 digits
+const validateExpiryDate = (expiryDate) => {
+  const currentDate = new Date();
+  const [year, month] = expiryDate.split('-');
+  const expiryDateObj = new Date(year, month - 1); // Month is zero-based
+  return expiryDateObj > currentDate; // Expiry should be in the future
+};
+
+// Form Validation
+const formValidation = () => {
+  const cardOwner = cardOwnerInput.value.trim();
+  const cardNumber = cardNumberInput.value.trim();
+  const cvcCode = cvcCodeInput.value.trim();
+  const expiryDate = cardDateInput.value.trim();
+
+  // Card Owner Validation
+  if (!validateCardOwner(cardOwner)) {
+    alert('Please enter a valid cardholder name.');
+    cardOwnerInput.focus();
+    return false;
+  }
+
+  // Card Number Validation (exactly 16 digits)
+  if (!validateCardNumber(cardNumber)) {
+    alert('Card number must be exactly 16 digits.');
+    cardNumberInput.focus();
+    return false;
+  }
+
+  // CVC Validation (exactly 3 digits)
+  if (!validateCvc(cvcCode)) {
+    alert('Security code (CVC) must be exactly 3 digits.');
+    cvcCodeInput.focus();
+    return false;
+  }
+
+  // Expiry Date Validation (should be in the future)
+  if (!validateExpiryDate(expiryDate)) {
+    alert('Expiry date must be in the future.');
+    cardDateInput.focus();
+    return false;
+  }
+
+  return true; 
+};
+payBtn.addEventListener('click', (event) => {
+  event.preventDefault();  
+  if (formValidation()) {
+    paymentForm.style.display = 'none';
+    confirmPayment.style.display = 'block';
+    resetBasket();
+  }
+});
+
+// Limit card numbers
+cardNumberInput.addEventListener('input', (event) => {
+  let value = event.target.value;
+  value = value.replace(/\D/g, '');
+  if (value.length > 16) {
+    value = value.slice(0, 16);
+  }
+  event.target.value = value;
+  //Limit CVC Numbers
+  cvcCodeInput.addEventListener('input', (event) => {
+    let value = event.target.value;
+
+    value = value.replace(/\D/g, '');
+
+    if (value.length > 3) {
+      value = value.slice(0, 3);
+    }
+    event.target.value = value;
+  });
 });
