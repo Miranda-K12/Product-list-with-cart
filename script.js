@@ -59,7 +59,6 @@ let closeCart = document.querySelector('.close-btn');
 let listProducts = [];
 let cart = [];
 
-
 // Toggle cart visibility
  cartIcon.addEventListener('click', () => {
     cartTab.classList.toggle('visible'); 
@@ -67,16 +66,18 @@ let cart = [];
 closeCart.addEventListener('click', () => {
   cartTab.classList.toggle('visible');
 });
-
 closeBtn.addEventListener('click', () => {
   cartTab.classList.toggle('visible');
 });
+//Close when user click escape button
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     cartTab.style.display = "none"; 
   }
 });
-// Add product data to the HTML
+
+
+// Add product data to the HTML`
 const addDataHtml = () => {
   if (listProducts.length > 0) {
     listProducts.forEach(product => {
@@ -223,41 +224,33 @@ const initApplication = () => {
     });
 };
 
-
 initApplication();
 
-//CheckOut Window
-
-const closePayment = document.querySelector('.close-payment');
-const payCart = document.querySelector('.cart-pay');
-const checkOut = document.querySelector('.check-out');
-
+//Reset Basket
 const resetBasket = () => {
-   cart.length = 0;
+  cart.length = 0;
   localStorage.setItem('cart', '[]');
-
   addCartToHtml();
   iconCartSpan.innerText = '0';
   cartTab.classList.remove('visible');
   initApplication();
 }
 
-closePayment.addEventListener('click', () => {
-  payCart.style.display = "none";
-})
+//CheckOut Window
+const closePayment = document.querySelector('.close-payment');
+const checkOut = document.querySelector('.check-out');
+const paymentForm = document.getElementById('payment-form');
+const confirmPayment = document.querySelector('.pay-conformation');
+const closeForm = document.querySelector('.close-form');
+//Close Basket 
+
+//Open Checkout
 checkOut.addEventListener('click', () => {
   if (cart.length > 0) {
-    payCart.style.display = "block";
-    cartTab.style.display = 'none';
+    paymentForm.style.display = "block"; // Show the payment form
+    cartTab.style.display = 'none';      // Hide the cart
   } else {
     alert('Your Basket is Empty');
-  }
-});
-
-//Payment window
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    payCart.style.display = "none";
   }
 });
 
@@ -266,8 +259,7 @@ const cardNumberInput = document.getElementById('card-number');
 const cardDateInput = document.getElementById('expiry-date');
 const cvcCodeInput = document.getElementById('security-code');
 const payBtn = document.querySelector('.pay-button');
-const confirmPayment = document.querySelector('.pay-confirmation');
-const paymentForm = document.querySelector('.payment-form');
+
 
 // Validate Inputs
 const validateCardOwner = (cardOwner) => /^(?=.*[A-Za-z]{3})[A-Za-z][A-Za-z '-]*[A-Za-z]$/.test(cardOwner);
@@ -314,17 +306,8 @@ const formValidation = () => {
     cardDateInput.focus();
     return false;
   }
-
   return true; 
 };
-payBtn.addEventListener('click', (event) => {
-  event.preventDefault();  
-  if (formValidation()) {
-    paymentForm.style.display = 'none';
-    confirmPayment.style.display = 'block';
-    resetBasket();
-  }
-});
 
 // Limit card numbers
 cardNumberInput.addEventListener('input', (event) => {
@@ -337,12 +320,42 @@ cardNumberInput.addEventListener('input', (event) => {
   //Limit CVC Numbers
   cvcCodeInput.addEventListener('input', (event) => {
     let value = event.target.value;
-
     value = value.replace(/\D/g, '');
-
     if (value.length > 3) {
       value = value.slice(0, 3);
     }
     event.target.value = value;
   });
 });
+//Close Payment Form
+closeForm.addEventListener('click', () => {
+  paymentForm.style.display = 'none';
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+     paymentForm.style.display = "none"; 
+  }
+});
+//Payment Confirmation
+payBtn.addEventListener('click', (event) => {
+  event.preventDefault();  
+  if (formValidation()) {
+    paymentForm.style.display = 'none';
+    confirmPayment.style.display = 'block';
+    confirmPayment.style.color = '#ffff';
+    setTimeout(() => {
+      confirmPayment.style.display = 'none'; 
+    }, 3000); 
+  }
+  resetBasket();
+});
+closePayment.addEventListener('click', () => {
+  confirmPayment.style.display = 'none';
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    confirmPayment.style.display = "none"; 
+  }
+});
+
+

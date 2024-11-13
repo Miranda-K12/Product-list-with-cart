@@ -44,6 +44,24 @@ body.dark-mode {
   background-color: #000000;
   color: #FCF8F6;
 }
+body.dark-mode .cartTab {
+  background-color: #000000;
+  color: #FCF8F6;
+  border: 2px solid #FCF8F6;
+  border-radius: 2rem;
+}
+body.dark-mode .cartTab .item {
+  color: #000000;
+}
+body.dark-mode .payment-form {
+  background-color: #000000;
+  color: #FCF8F6;
+  border: 2px solid #FCF8F6;
+  border-radius: 2rem;
+}
+body.dark-mode .payment-form .form-group label {
+  color: #FCF8F6;
+}
 
 .container {
   max-width: 144rem;
@@ -360,26 +378,27 @@ header .header-icons .icon-cart span {
   pointer-events: auto;
 }
 
-.cart-pay {
-  background-color: #F5EEEC;
+.pay-conformation {
+  background-color: #347928;
+  color: #F5EEEC;
   border-radius: 2rem;
   margin: 0 auto;
   padding: 2.6rem;
   width: 60%;
   z-index: 1000;
-  position: absolute;
-  top: 8%;
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 768px) {
-  .cart-pay {
-    width: 90%;
+  .pay-conformation {
+    width: 80%;
   }
 }
-.cart-pay .close-payment {
+.pay-conformation .close-payment {
   position: absolute;
   font-size: 2rem;
   font-weight: 600;
@@ -387,52 +406,100 @@ header .header-icons .icon-cart span {
   top: 2rem;
   cursor: pointer;
 }
-.cart-pay h3 {
+.pay-conformation h3 {
   font-size: 2rem;
 }
-.cart-pay .cards {
+.pay-conformation .cards {
   display: flex;
   gap: 2.6rem;
   margin-bottom: 2.4rem;
 }
-.cart-pay .cards .bank-card {
+.pay-conformation .cards .bank-card {
   width: 6.4rem;
   height: auto;
 }
-.cart-pay .payment-form, .cart-pay .form-group {
-  display: flex;
+
+.payment-form,
+.form-group {
   flex-direction: column;
   gap: 1.2rem;
 }
-.cart-pay .form-group label {
+
+.payment-form {
+  z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  padding: 20px;
+  background-color: #F5EEEC;
+  border-radius: 2rem;
+  border: 2px solid #87635A;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  overflow: scroll;
+}
+@media (max-width: 768px) {
+  .payment-form {
+    width: 80%;
+  }
+}
+.payment-form h3 {
+  font-size: 3.6rem;
+  margin-bottom: 1.2rem;
+}
+.payment-form .close-form {
+  position: absolute;
+  right: 2.4rem;
+  font-size: 4.2rem;
+  cursor: pointer;
+  top: 2rem;
+}
+.payment-form .cards {
+  display: flex;
+  gap: 2.6rem;
+  margin-bottom: 2.4rem;
+}
+.payment-form .cards .bank-card {
+  width: 6.4rem;
+  height: auto;
+}
+.payment-form .form-group {
+  margin-bottom: 20px;
+}
+.payment-form .form-group label {
+  display: block;
   margin-bottom: 10px;
   font-size: 1.8rem;
   color: #000000;
+  font-weight: 600;
 }
-.cart-pay .form-group input {
+.payment-form .form-group input {
   width: 100%;
   padding: 10px;
   font-size: 14px;
   border: 1px solid #CAAFA7;
-  border-radius: 4px;
-  box-sizing: border-box;
+  border-radius: 2rem;
 }
-.cart-pay .pay-button {
+.payment-form .pay-button {
   background-color: #347928;
-  width: 20rem;
+  width: 40%;
+  display: block;
   margin: 0 auto;
   color: #FCF8F6;
   padding: 1.2rem;
   border-radius: 2rem;
   font-weight: 600;
   font-size: 1.8rem;
-  border: 1px solid #F5EEEC;
+  outline: none;
+  border: none;
 }
-.cart-pay .pay-button:hover {
-  transform: scale(1.05);
+.payment-form .pay-button:hover {
+  transform: scale(1.02);
 }
-.cart-pay .pay-confirmation {
-  display: none;
+
+.pay-confirmation {
   font-size: 1.8rem;
   text-align: center;
   font-weight: 600;
@@ -477,6 +544,11 @@ header .header-icons .icon-cart span {
   margin-bottom: 1rem;
   font-size: 1.8rem;
   width: 100%;
+}
+.contact .contact-form .form input:focus,
+.contact .contact-form .form textarea:focus {
+  transform: scale(1.02);
+  outline: none;
 }
 .contact .contact-form .form input::placeholder,
 .contact .contact-form .form textarea::placeholder {

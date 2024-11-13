@@ -61,9 +61,26 @@ body {
   &.dark-mode {
   background-color: $black;
   color: $rose-50;
+  .cartTab{
+    background-color: $black;
+    color:$rose-50;
+    border: 2px solid $rose-50;
+    border-radius: $border-radius;
+    .item{
+      color:$black;
+    }
+  }
+  .payment-form{
+    background-color:$black;
+    color:$rose-50;
+    border: 2px solid $rose-50;
+    border-radius: $border-radius;
+    .form-group label {
+      color:$rose-50;
+    }
+  }
 }
 }
-
 // Container styles
 .container {
   max-width: 144rem;
@@ -318,10 +335,8 @@ header {
   .check-out {
     background-color: $green;
   }
-
   .listCart {
     overflow: auto;
-
     .item {
       display: grid;
       grid-template-columns: 15% 40% 15% 20%;
@@ -332,7 +347,6 @@ header {
       margin-bottom: $medium-margin;
       margin-top: $medium-margin;
       font-size: $font-size-text;
-
       img {
         width: 100%;
         height: auto;
@@ -340,12 +354,10 @@ header {
         margin: 1rem;
       }
     }
-
     .quantity {
       display: flex;
       align-items: center;
       justify-content: space-around;
-
       span {
         @extend %flex-center;
         width: 2.4rem;
@@ -378,21 +390,22 @@ header {
   opacity: 1;
   pointer-events: auto;
 }
-.cart-pay{
-  background-color: $rose-100;
+.pay-conformation{
+  background-color: $green;
+  color: $rose-100;
   border-radius: $border-radius;
   margin: 0 auto;
   padding: $medium-padding;
   width:60%;
   z-index:1000; 
-  position: absolute;
-  top: 8%;
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
   @media (max-width:768px){
-    width:90%;
+  width:80%;
   }
   .close-payment{
       position: absolute;
@@ -414,47 +427,90 @@ header {
       height:auto;
     }
   }
-  .payment-form, .form-group{
-    display: flex;
+}
+ .payment-form, 
+ .form-group{
     flex-direction: column;
     gap:$small-padding;
   }
-  .form-group{
-    label {
-  margin-bottom: 10px;
-  font-size: $font-size-text;
-  color:$black;
-}
-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid $rose-300;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+  .payment-form {
+  z-index: 1000;
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  padding: 20px;
+  background-color: $rose-100;
+  border-radius: $border-radius;
+  border: 2px solid $rose-500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  overflow: scroll;
+  @media (max-width:768px){
+    width:80%;
   }
-  .pay-button{
+   h3{
+    font-size: $div-header;
+    margin-bottom: $small-margin;
+   }
+  .close-form{
+   position: absolute;
+   right: 2.4rem;
+   font-size: $font-size-header;
+   cursor: pointer;
+   top:2rem;
+  }
+    .cards{
+    display: flex;
+    gap:$medium-padding;
+    margin-bottom: $medium-margin;
+    .bank-card{
+      width:6.4rem;
+      height:auto;
+    }
+  }
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: $font-size-text;
+      color: $black;
+      font-weight: $text-bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid $rose-300;
+      border-radius: $border-radius;
+    }
+  }
+  .pay-button {
     background-color: $green;
-    width: 20rem;
+    width: 40%;
+    display: block;
     margin: 0 auto;
-    color:$rose-50;
+    color: $rose-50;
     padding: $small-padding;
     border-radius: $border-radius;
     font-weight: $text-bold;
     font-size: $font-size-text;
-    border: 1px solid $rose-100;
-     &:hover {
-         transform: scale(1.05);
-        }
+    outline: none;
+    border: none;
+    &:hover {
+      transform: scale(1.02);
+    }
   }
+}
   .pay-confirmation{
-    display: none;
     font-size: $font-size-text;
     text-align: center;
     font-weight: $text-bold;
   }
-}
 // Contact
 .contact {
   background-image: url(../images/contact-img.jpg);
@@ -496,6 +552,10 @@ input {
         margin-bottom: 1rem; 
         font-size: $font-size-text;
         width: 100%; 
+       &:focus {
+    transform: scale(1.02); 
+    outline: none; 
+  }
 
         &::placeholder {
           color: $rose-300; 
