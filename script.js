@@ -60,23 +60,24 @@ let listProducts = [];
 let cart = [];
 
 // Toggle cart visibility
- cartIcon.addEventListener('click', () => {
-    cartTab.classList.toggle('visible'); 
-  });
-closeCart.addEventListener('click', () => {
+// Function to toggle the cart visibility
+function toggleCart() {
   cartTab.classList.toggle('visible');
-});
-closeBtn.addEventListener('click', () => {
-  cartTab.classList.toggle('visible');
-});
-//Close when user click escape button
+  if (cartTab.classList.contains('visible')) {
+    addCartToHtml();  
+  }
+}
+// Event listeners to toggle the cart visibility
+cartIcon.addEventListener('click', toggleCart);
+closeCart.addEventListener('click', toggleCart);
+closeBtn.addEventListener('click', toggleCart);
+
+// Close the cart when Escape key is pressed
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    cartTab.style.display = "none"; 
+    cartTab.classList.remove('visible');
   }
 });
-
-
 // Add product data to the HTML`
 const addDataHtml = () => {
   if (listProducts.length > 0) {
@@ -106,18 +107,14 @@ listProductHtml.addEventListener('click', (event) => {
   }
 });
 
-// Function to add product to the cart
 const addtoCart = (product_id) => {
   let positionThisProductInCart = cart.findIndex((value) => value.product_id == product_id);
   
   if (positionThisProductInCart < 0) {
-    // Product not in cart, add it with quantity 1
     cart.push({ product_id: product_id, quantity: 1 });
   } else {
-    // Product is in cart, increment its quantity
     cart[positionThisProductInCart].quantity++;
   }
-  
   addCartToHtml();
   addCartToMemory();
 }
@@ -225,7 +222,6 @@ const initApplication = () => {
 };
 
 initApplication();
-
 //Reset Basket
 const resetBasket = () => {
   cart.length = 0;
@@ -247,8 +243,7 @@ const closeForm = document.querySelector('.close-form');
 //Open Checkout
 checkOut.addEventListener('click', () => {
   if (cart.length > 0) {
-    paymentForm.style.display = "block"; // Show the payment form
-    cartTab.style.display = 'none';      // Hide the cart
+    paymentForm.style.display = "block";     
   } else {
     alert('Your Basket is Empty');
   }
@@ -354,4 +349,3 @@ const formValidation = () => {
       confirmPayment.style.display = "none";
     }
   });
-

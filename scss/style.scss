@@ -374,7 +374,7 @@ header {
       }
     }
   }
-    .cart-total-price{
+  .cart-total-price{
   font-size: $header-font;
   font-weight: bold;
   background-color:$yellow;
@@ -389,6 +389,7 @@ header {
 .cartTab.visible {
   opacity: 1;
   pointer-events: auto;
+  display: block;
 }
 .pay-conformation{
   background-color: $green;
