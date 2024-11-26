@@ -6,6 +6,7 @@
 #### Built with
 - This project implements an Add to Cart functionality for an e-commerce website, built with HTML, CSS (SCSS), and JavaScript. The main goal of the project is to provide a basic but functional cart system, where users can add items to their cart, view the cart's content, and see the total price.
 #### Features
+- dark/light mode.
 - Add items to the cart: Users can add products to their shopping cart.
 - View cart contents: Displays the items added to the cart along with their details.
 - Update cart: Users can update the quantity or remove items from the cart.
